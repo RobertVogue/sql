@@ -81,7 +81,8 @@ SELECT city, state, population_estimate_2018 FROM cities WHERE population_estima
      1,000,000 people).
 */
 
--- your query here
+SELECT city FROM cities WHERE population_estimate_2018 >= 1000000;
+
 
 \echo ========= Problem 3.5 ====================================================
 \echo
@@ -91,7 +92,8 @@ SELECT city, state, population_estimate_2018 FROM cities WHERE population_estima
      uses a WHERE clause to return only the cities in Texas.
 */
 
--- your query here
+SELECT city, population_estimate_2018 / 1000000 AS result FROM cities WHERE state = 'Texas';
+
 
 \echo ========= Problem 3.6 ====================================================
 \echo
@@ -104,7 +106,9 @@ SELECT city, state, population_estimate_2018 FROM cities WHERE population_estima
      New York, California, Texas.
 */
 
--- your query here
+SELECT city, population_estimate_2018/1000000 AS result FROM cities
+WHERE city NOT IN('New York', 'California', 'Texas');
+
 
 \echo ========= Problem 3.7 ====================================================
 \echo
@@ -115,7 +119,9 @@ SELECT city, state, population_estimate_2018 FROM cities WHERE population_estima
      (Note: See the PostgreSQL doc on Pattern Matching for more information.)
 */
 
--- your query here
+SELECT city, state, population_estimate_2018 FROM cities
+WHERE city LIKE 'S%';
+
 
 \echo ========= Problem 3.8 ====================================================
 \echo
@@ -124,9 +130,13 @@ SELECT city, state, population_estimate_2018 FROM cities WHERE population_estima
      land area of over 400 square miles OR a population over 2 million people
      (or 2,000,000 people). Show the city name, the land area, and the estimated
      population in 2018.
+
+     land_area_sq_mi_2016
 */
 
--- your query here
+SELECT city, land_area_sq_mi_2016, population_estimate_2018 FROM cities
+WHERE land_area_sq_mi_2016 > 400 OR population_estimate_2018 > 2000000;
+
 
 \echo ========= Problem 3.9 ====================================================
 \echo
@@ -137,7 +147,8 @@ SELECT city, state, population_estimate_2018 FROM cities WHERE population_estima
      name, the land area, and the estimated population in 2018.
 */
 
--- your query here
+SELECT city, land_area_sq_mi_2016, population_estimate_2018 FROM cities
+WHERE (land_area_sq_mi_2016 > 400) OR (population_estimate_2018 > 2000000) AND (land_area_sq_mi_2016 <= 400) OR (population_estimate_2018 <= 2000000);
 
 \echo ========= Problem 3.10 ===================================================
 \echo
