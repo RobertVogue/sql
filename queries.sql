@@ -107,7 +107,7 @@ SELECT city, population_estimate_2018 / 1000000 AS result FROM cities WHERE stat
 */
 
 SELECT city, population_estimate_2018/1000000 AS result FROM cities
-WHERE city NOT IN('New York', 'California', 'Texas');
+WHERE city NOT IN ('New York', 'California', 'Texas');
 
 
 \echo ========= Problem 3.7 ====================================================
@@ -148,7 +148,7 @@ WHERE land_area_sq_mi_2016 > 400 OR population_estimate_2018 > 2000000;
 */
 
 SELECT city, land_area_sq_mi_2016, population_estimate_2018 FROM cities
-WHERE (land_area_sq_mi_2016 > 400) OR (population_estimate_2018 > 2000000) AND (land_area_sq_mi_2016 <= 400) OR (population_estimate_2018 <= 2000000);
+WHERE (land_area_sq_mi_2016 > 400 OR population_estimate_2018 > 2000000) AND (land_area_sq_mi_2016 <= 400 OR population_estimate_2018 <= 2000000);
 
 \echo ========= Problem 3.10 ===================================================
 \echo
@@ -159,7 +159,8 @@ WHERE (land_area_sq_mi_2016 > 400) OR (population_estimate_2018 > 2000000) AND (
       in 2010.
 */
 
--- your query here
+SELECT city, population_estimate_2018, population_census_2010 FROM cities
+WHERE (population_estimate_2018 - population_census_2010) > 200000;
 
 ---- Phase 4: Use a JOIN operation ---------------------------------------------
 -- Retrieve rows from multiple tables joining on a foreign key.
@@ -173,8 +174,8 @@ WHERE (land_area_sq_mi_2016 > 400) OR (population_estimate_2018 > 2000000) AND (
      with data from the "airports" table using the city_id foreign key. Show the
      airport names and city names only.
 */
+SELECT city, name FROM airports INNER JOIN cities ON (airports.city_id = cities.id);
 
--- your query here
 
 \echo ========= Problem 4.2 ====================================================
 \echo
