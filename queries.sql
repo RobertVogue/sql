@@ -187,7 +187,9 @@ SELECT city, name FROM airports INNER JOIN cities ON (airports.city_id = cities.
       rows.)
 */
 
--- your query here
+SELECT COUNT(*) FROM airports INNER JOIN cities ON(airports.city_id = cities.id)
+WHERE city = 'New York';
+
 
 --------------------------------------------------------------------------------
 ---- Bonuses:
@@ -205,7 +207,8 @@ B.1) Apostrophe: Write a SQL query to get all three ID codes (the Federal
       include a single quote in a SQL query.)
 */
 
--- your query here
+SELECT faa_id, iata_id, icao_id FROM airports WHERE name = 'Chicago O''Hare International Airport';
+
 
 \echo ========= Problem B.2 ====================================================
 \echo
@@ -218,7 +221,8 @@ B.2) Formatting Commas: Refactor Phase 2, Query #1 to turn the INT for estimated
        estimated population in 2018 from the "cities" table.
 */
 
--- your query here
+SELECT city, state, TO_CHAR(population_estimate_2018, '1,111,111') FROM cities;
+
 
 \echo ========= Problem B.3 ====================================================
 \echo
